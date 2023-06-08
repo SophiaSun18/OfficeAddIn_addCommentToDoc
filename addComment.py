@@ -12,8 +12,7 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 # If modifying these scopes, delete the file token.json.
-# Current scope: see, edit, create, and delete all Google Docs documents.
-SCOPES = ['https://www.googleapis.com/auth/documents']
+SCOPES = ['https://www.googleapis.com/auth/drive']
 DOC_ID = '1aI_pYu92MmxplE5zTtjGGlO8vmPxyf6V660936twX-Y'
 
 def get_credentials():
@@ -52,12 +51,14 @@ def read_structural_elements(elements):
     return text
 
 def main():
-    """ Using Google docs v1 API to add comments to a certain Google Doc. """
+    """ Using Google API to add comments to a certain Google Doc. """
     try:
-        service = build('docs', 'v1', credentials=get_credentials())
 
-        # Call the Docs v1 API
-        results = service.documents().get(documentId = DOC_ID).execute()
+        """ First part: using Docs API to extract all the q words and count the length. """
+        doc_service = build('docs', 'v1', credentials=get_credentials())
+
+        # Call the Docs v1 API and get the text part of the document
+        results = doc_service.documents().get(documentId = DOC_ID).execute()
         doc = read_structural_elements(results.get('body').get('content'))
         
         # Output the Google docs document into a JSON file
@@ -65,9 +66,30 @@ def main():
         #     outfile.write(json.dumps(results, indent=4))
 
         # Print all the q words and the length of the words
+        q = {}
         for i in doc.split():
             if i[0] == 'q':
-                print(i, len(i))
+                q[i] = len(i)
+        # print(q)
+
+        """ Second part: using Drive API to create new comments in the document. """
+        drive_service = build('drive', 'v3', credentials=get_credentials())
+        
+        # Call the Drive v3 API and create a new comment in the document
+        comment = {"content": "a new comment", "anchor": {'r': 256, 'a': [{'txt': {'o': 15, 'l': 8}}]}}
+        drive_service.comments().create(fileId=DOC_ID, body=comment, fields='*').execute()
+
+        # Call the Drive v3 API and get the list of comment of the document
+        request = drive_service.comments().list(fileId=DOC_ID, includeDeleted=True, fields='*').execute()
+
+        # Output the comment list into a JSON file
+        # with open("comments.json", "w") as outfile:
+        #     outfile.write(json.dumps(request, indent=4))
+
+        revision = drive_service.revisions().list(fileId=DOC_ID, fields='*').execute()
+        # Output the revision history into a JSON file
+        with open("revision.json", "w") as outfile:
+            outfile.write(json.dumps(revision, indent=4))
 
     except HttpError as error:
         # TODO(developer) - Handle errors from drive API.
