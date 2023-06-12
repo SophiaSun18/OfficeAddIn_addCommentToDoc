@@ -77,19 +77,19 @@ def main():
         
         # Call the Drive v3 API and create a new comment in the document
         comment = {"content": "a new comment", "anchor": {'r': 256, 'a': [{'txt': {'o': 15, 'l': 8}}]}}
-        drive_service.comments().create(fileId=DOC_ID, body=comment, fields='*').execute()
+        # drive_service.comments().create(fileId=DOC_ID, body=comment, fields='*').execute()
 
-        # Call the Drive v3 API and get the list of comment of the document
-        request = drive_service.comments().list(fileId=DOC_ID, includeDeleted=True, fields='*').execute()
 
+
+        # request = drive_service.comments().list(fileId=DOC_ID, includeDeleted=True, fields='*').execute()
         # Output the comment list into a JSON file
         # with open("comments.json", "w") as outfile:
         #     outfile.write(json.dumps(request, indent=4))
 
-        revision = drive_service.revisions().list(fileId=DOC_ID, fields='*').execute()
+        # revision = drive_service.revisions().list(fileId=DOC_ID, fields='*').execute()
         # Output the revision history into a JSON file
-        with open("revision.json", "w") as outfile:
-            outfile.write(json.dumps(revision, indent=4))
+        # with open("revision.json", "w") as outfile:
+            # outfile.write(json.dumps(revision, indent=4))
 
     except HttpError as error:
         # TODO(developer) - Handle errors from drive API.
