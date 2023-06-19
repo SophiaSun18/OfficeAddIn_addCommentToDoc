@@ -3,9 +3,9 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
   xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="TaskPaneApp">
-  <Id>C4E304B6-24D2-416B-9BC6-2B4C4D37AEFB</Id>
+  <Id>D60BFECC-AA8F-4A40-91D1-FA59E9572927</Id>
   <Version>1.0.0.0</Version>
-  <ProviderName>Contoso</ProviderName>
+  <ProviderName>SophiaSun18</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Comment Insertion"/>
   <Description DefaultValue="Comment Insertion Office Add-in."/>
@@ -14,6 +14,7 @@
   <SupportUrl DefaultValue="https://learn.microsoft.com/office/dev/add-ins/overview/office-add-in-code-samples"/>
   <AppDomains>
     <AppDomain>https://github.com/SophiaSun18/addCommentToDoc/tree/main/WordAPI_OfficeAddIn</AppDomain>
+    <AppDomain>https://officedev.github.io/Office-Add-in-samples/Samples/hello-world/word-hello-world</AppDomain>
   </AppDomains>
   <Hosts>
     <Host Name="Document"/>
@@ -74,7 +75,7 @@
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="GetStarted.Title" DefaultValue="Get started with the comment insertion add-in!"/>
-        <bt:String id="CommandsGroup.Label" DefaultValue="Contoso Add-in"/>
+        <bt:String id="CommandsGroup.Label" DefaultValue="Sophia's Add-in"/>
         <bt:String id="TaskpaneButton.Label" DefaultValue="Comment Insertion"/>
         <bt:String id="TaskpaneButton.SupertipTitle" DefaultValue="Comment Insertion"/>
       </bt:ShortStrings>
