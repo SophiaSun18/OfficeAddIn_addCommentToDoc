@@ -13,7 +13,7 @@
   <HighResolutionIconUrl DefaultValue="https://officedev.github.io/Office-Add-in-samples/Samples/hello-world/word-hello-world/assets/icon-64.png"/>
   <SupportUrl DefaultValue="https://learn.microsoft.com/office/dev/add-ins/overview/office-add-in-code-samples"/>
   <AppDomains>
-    <AppDomain>https://officedev.github.io/Office-Add-in-samples/Samples/hello-world/word-hello-world</AppDomain>
+    <AppDomain>https://github.com/SophiaSun18/addCommentToDoc/tree/main/WordAPI_OfficeAddIn</AppDomain>
   </AppDomains>
   <Hosts>
     <Host Name="Document"/>
