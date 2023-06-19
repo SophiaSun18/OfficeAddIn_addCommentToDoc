@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "word": "question",
+        "comment": "what question are you trying to ask exactly?"
+    },
+    {
+        "id": 2,
+        "word": "us",
+        "comment": "who is 'us' refering to?"
+    },
+    {
+        "id": 3,
+        "word": "quick",
+        "comment": "how long spent on writing is considered quick?"
+    },
+    {
+        "id": 4,
+        "word": "queue",
+        "comment": "is there a better word to replace by?"
+    },
+    {
+        "id": 5,
+        "word": "quantitative",
+        "comment": "tell us more about the quantitative standards."
+    },
+    {
+        "id": 6,
+        "word": "questionnaire",
+        "comment": "tell us more about the questionnaire, how did you design it?"
+    },
+    {
+        "id": 7,
+        "word": "evaluated",
+        "comment": "who will be in charge of evaluating the essay?"
+    },
+    {
+        "id": 8,
+        "word": "quality",
+        "comment": "how do you evaluate the quality?"
+    }
+]
