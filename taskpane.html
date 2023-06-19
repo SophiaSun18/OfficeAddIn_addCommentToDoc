@@ -73,11 +73,10 @@
       let words = qWordFilter(documentBody);
       // Fetch the comment from the server.
       let url = "https://jsonplaceholder.typicode.com/comments/";
-      let url2 = "https://dev6.kenarnold.org/OfficeAddIn_addCommentToDoc/testInfo.json";   
       // Insert comments to all target words.
       for (let i = 0; i < words.length; i++) {
         let index = (i + 1).toString();
-        let data = await getCommentBody(url2 + index);
+        let data = await getCommentBody(url + index);
         let comment = data.name;
         await addComment(words[i], comment);
       }
