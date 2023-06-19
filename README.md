@@ -1,6 +1,6 @@
-# addCommentToDoc
+# addCommentToDoc: WordAPI
 
-* June 8, 2023: Start working on using Google doc API to add comment into a Google doc.
-* June 10, 2023: Attempt on Google doc failed. Clean up all related files into a separate folder.
-* June 12, 2023: Start working on using Microsoft Word API to add comment into a .docx.
-* June 19, 2023: Start working on Word Add-in actual deployment.
+## References:
+* Template: https://github.com/OfficeDev/Office-Add-in-samples/tree/main/Samples/hello-world/word-hello-world
+* Word API: https://learn.microsoft.com/en-us/javascript/api/word?view=word-js-preview
+* Manifest: https://learn.microsoft.com/en-us/javascript/api/manifest?view=word-js-preview
