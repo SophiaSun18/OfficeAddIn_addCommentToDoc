@@ -1,2 +1,0 @@
-bin\Debug\OfficeAppManifests\addCommentToDocManifest.xml
-C:\Users\zs35\Desktop\addCommentToDoc\addCommentToDoc\addCommentToDoc\bin\Debug\addCommentToDoc.debugapp

@@ -1,4 +1,4 @@
-# addCommentToDoc
+# addCommentToDoc: GoogleAPI
 
 ## References:
 * Manage comments: https://developers.google.com/drive/api/guides/manage-comments#anchor
