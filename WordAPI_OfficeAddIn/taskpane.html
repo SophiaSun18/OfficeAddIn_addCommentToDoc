@@ -1,0 +1,87 @@
+<!-- Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT License. -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Office JavaScript API -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+</head>
+
+<body>
+    <p>This add-in will insert comments.</p>
+    <button id="insertButton">Start Inserting!</button>
+</body>
+
+<script>
+    Office.onReady((info) => {
+        // Check that we loaded into Word
+        if (info.host === Office.HostType.Word) {
+            document.getElementById("insertButton").onclick = main;
+        }
+    });
+
+    // Call the Word API and return the body of the document.
+    function getDocumentBody() {
+      return Word.run(async function(context) {
+        let body = context.document.body;
+        body.load("text");
+        await context.sync();
+        return body.text;
+      });
+    }
+
+    // Split a long string into words and return all the words that start with 'q'.
+    // Temporary version. Can update to other filters.
+    function qWordFilter(aStr) {
+      let words = aStr.split(" ");
+      let result = [];
+      for (let i = 0; i < words.length; i++) {
+        if (words[i][0] == "q") {
+          result.push(words[i]);
+        }
+      }
+      return result;
+    }
+
+    // Fetch data from the web server.
+    async function getCommentBody(url) {
+      let response = await fetch(url);
+      let data = await response.json();
+      return data;
+    }
+
+    // Search for a word in the given document, get the range of the word, and insert an anchored comment.
+    function addComment(word, comment) {
+      return Word.run(async function(context) {
+        // Search for the target word and load the result.
+        let result = context.document.body.search(word);
+        result.load("items");
+        await context.sync();
+        // Insert the comment into each occurrance of the target word.
+        let itemList = result.items;
+        for (let i = 0; i < itemList.length; i++) {
+          let range = itemList[i].getRange();
+          let testComment = range.insertComment(comment);
+        }
+      })
+    }
+
+    // Main program.
+    async function main() {
+      // Get the document and the target words.
+      let documentBody = await getDocumentBody();
+      let words = qWordFilter(documentBody);
+      // Fetch the comment from the server.
+      let url = "https://jsonplaceholder.typicode.com/comments/";
+      // Insert comments to all target words.
+      for (let i = 0; i < words.length; i++) {
+        let index = (i + 1).toString();
+        let data = await getCommentBody(url + index);
+        let comment = data.name;
+        await addComment(words[i], comment);
+      }
+    }
+
+</script>
+
+</html>

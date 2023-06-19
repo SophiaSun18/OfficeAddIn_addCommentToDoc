@@ -19,7 +19,7 @@
     <Host Name="Document"/>
   </Hosts>
   <DefaultSettings>
-    <SourceLocation DefaultValue="https://officedev.github.io/Office-Add-in-samples/Samples/hello-world/word-hello-world/taskpane.html"/>
+    <SourceLocation DefaultValue="https://github.com/SophiaSun18/addCommentToDoc/blob/main/WordAPI_OfficeAddIn/taskpane.html"/>
   </DefaultSettings>
   <Permissions>ReadWriteDocument</Permissions>
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
@@ -70,17 +70,17 @@
       </bt:Images>
       <bt:Urls>
         <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="http://go.microsoft.com/fwlink/?LinkId=276812"/>
-        <bt:Url id="Taskpane.Url" DefaultValue="https://officedev.github.io/Office-Add-in-samples/Samples/hello-world/word-hello-world/taskpane.html"/>
+        <bt:Url id="Taskpane.Url" DefaultValue="https://github.com/SophiaSun18/addCommentToDoc/blob/main/WordAPI_OfficeAddIn/taskpane.html"/>
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="GetStarted.Title" DefaultValue="Get started with the Hello world add-in!"/>
+        <bt:String id="GetStarted.Title" DefaultValue="Get started with the comment insertion add-in!"/>
         <bt:String id="CommandsGroup.Label" DefaultValue="Contoso Add-in"/>
-        <bt:String id="TaskpaneButton.Label" DefaultValue="Hello world"/>
-        <bt:String id="TaskpaneButton.SupertipTitle" DefaultValue="Hello world"/>
+        <bt:String id="TaskpaneButton.Label" DefaultValue="Comment Insertion"/>
+        <bt:String id="TaskpaneButton.SupertipTitle" DefaultValue="Comment Insertion"/>
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="GetStarted.Description" DefaultValue="Your sample add-in loaded succesfully. Go to the HOME tab and click the 'Hello world' button to get started."/>
-        <bt:String id="TaskpaneButton.SupertipText" DefaultValue="Open the Hello world add-in"/>
+        <bt:String id="GetStarted.Description" DefaultValue="Your sample add-in loaded succesfully. Go to the HOME tab and click the 'Comment Insertion' button to get started."/>
+        <bt:String id="TaskpaneButton.SupertipText" DefaultValue="Open the Comment Insertion add-in"/>
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
