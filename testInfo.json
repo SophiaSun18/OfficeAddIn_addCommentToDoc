@@ -2,51 +2,57 @@
     {
         "id": 1,
         "word": "question",
+        "start": 8,
+        "end": 12,
         "comment": "what question are you trying to ask exactly?"
     },
     {
         "id": 2,
-        "word": "us",
+        "word": "quick",
+        "start": 53,
+        "end": 58,
         "comment": "who is 'us' refering to?"
     },
     {
         "id": 3,
-        "word": "quick",
+        "word": "queue",
+        "start": 98,
+        "end": 103,
         "comment": "how long spent on writing is considered quick?"
     },
     {
         "id": 4,
-        "word": "queue",
+        "word": "quantitative",
+        "start": 125,
+        "end": 137,
         "comment": "is there a better word to replace by?"
     },
     {
         "id": 5,
-        "word": "quantitative",
+        "word": "questionnaire",
+        "start": 20,
+        "end": 32,
         "comment": "tell us more about the quantitative standards."
     },
     {
         "id": 6,
-        "word": "questionnaire",
+        "word": "quality",
+        "start": 49,
+        "end": 56,
         "comment": "tell us more about the questionnaire, how did you design it?"
     },
     {
         "id": 7,
         "word": "evaluated",
+        "start": 89,
+        "end": 101,
         "comment": "who will be in charge of evaluating the essay?"
     },
     {
         "id": 8,
         "word": "quality",
+        "start": 31,
+        "end": 36,
         "comment": "how do you evaluate the quality?"
-    },
-    {
-        "id": 9,
-        "word": "hello",
-        "comment": "hello world"
-    },
-    {
-        "id": 10,
-        "word": "testing",
-        "comment": "this is a comment for testing"
     }
 ]
