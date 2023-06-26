@@ -19,26 +19,25 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-class Item(BaseModel):
-    firstname: str
-    lastname: str
-    age: int
-
 @app.get("/")
 async def root():
     return {"Hello! Welcome to dev6!"}
 
-@app.get("/repsponse")
+@app.get("/response")
 async def get_response():
     return json.loads(open("testInfo.json").read())
 
 @app.get("/directory/{path:path}", response_class=FileResponse)
-async def access_contents(path:str):
+async def access_contents(path: str):
     return path
 
 @app.post("/data")
-async def post_data(data: Item):
-    return "Success: data is sent!"
+async def store_data(data: list):
+    file_name = f"data_{time.time()}.json"
+    json_data = json.dumps(data)
+    with open(file_name, "w") as file:
+        file.write(json_data)
+    return {"message": "Data stored successfully"}
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=int(sys.argv[1]))
