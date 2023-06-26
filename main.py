@@ -26,18 +26,9 @@ async def root():
 async def get_info():
     return json.loads(open("testInfo.json").read())
 
-# @app.get("/", response_class=FileResponse)
-# async def root():
-#     return root_path
-
-@app.get("/directory/{path:path}")
+@app.get("/directory/{path:path}", response_class=FileResponse)
 async def access_contents(path:str):
-    directory_path = os.path.join(os.getcwd(), path)
-    if (os.path.isdir(directory_path)):
-        contents = os.listdir(directory_path)
-    elif (os.path.isfile(directory_path)):
-        content = directory_path
-    return content
+    return path
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=int(sys.argv[1]))
