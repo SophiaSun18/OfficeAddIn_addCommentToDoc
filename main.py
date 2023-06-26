@@ -16,6 +16,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/")
+async def root():
+    return {"Hello World!"}
+
 @app.get("/info")
 async def get_info():
     return json.loads(open("testInfo.json").read())
