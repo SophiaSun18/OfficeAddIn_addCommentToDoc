@@ -20,7 +20,9 @@ app.add_middleware(
 )
 
 class Item(BaseModel):
-    data: str
+    firstname: str
+    lastname: str
+    age: int
 
 @app.get("/")
 async def root():
