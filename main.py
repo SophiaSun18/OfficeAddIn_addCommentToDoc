@@ -3,8 +3,10 @@ import json
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 
 app = FastAPI()
+root_path = "/"
 
 origins = ["*"]
 
@@ -23,6 +25,10 @@ async def root():
 @app.get("/info")
 async def get_info():
     return json.loads(open("testInfo.json").read())
+
+@app.get("/files", response_class=FileResponse)
+async def root():
+    return root_path
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=int(sys.argv[1]))
