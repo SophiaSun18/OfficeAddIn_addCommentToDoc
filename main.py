@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 
 app = FastAPI()
-root_path = "/"
+root_path = "/assets/"
 
 origins = ["*"]
 
@@ -18,15 +18,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/")
-async def root():
-    return {"Hello World!"}
+# @app.get("/")
+# async def root():
+#     return {"Hello World!"}
 
 @app.get("/info")
 async def get_info():
     return json.loads(open("testInfo.json").read())
 
-@app.get("/files", response_class=FileResponse)
+@app.get("/", response_class=FileResponse)
 async def root():
     return root_path
 
