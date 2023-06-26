@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 
 app = FastAPI()
-root_path = "/assets/"
+root_path = "/OfficeAddIn_addCommentToDoc/assets/"
 
 origins = ["*"]
 
