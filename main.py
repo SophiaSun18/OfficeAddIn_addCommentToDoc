@@ -20,18 +20,18 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# The start up message
 @app.get("/")
 async def root():
     return {"Hello! Welcome to dev6!"}
 
-@app.get("/response")
-async def get_response():
-    return json.loads(open("testInfo.json").read())
-
+# Get access to files on the server. Only for development use.
 @app.get("/directory/{path:path}", response_class=FileResponse)
 async def access_contents(path: str):
     return path
 
+# Send data to the server and store data in a new .json file.
+# .json named by the time that the data is uploaded.
 @app.post("/data")
 async def store_data(data: list):
     file_name = f"data_{time.time()}.json"
@@ -39,6 +39,12 @@ async def store_data(data: list):
     with open(file_name, "w") as file:
         file.write(json_data)
     return {"message": "Data stored successfully"}
+
+# Get the response (AI-generated comments) from the server.
+# For now, loading an existing file as response.
+@app.get("/response")
+async def get_response():
+    return json.loads(open("testInfo.json").read())
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=int(sys.argv[1]))
