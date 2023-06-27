@@ -19,55 +19,80 @@
       document.getElementById("insertButton").onclick = main;
     }
   });
+  
+  // Send the document to the web server.
+  async function sendDocument(data) {
+    const response = await fetch("https://dev6.kenarnold.org/data", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+    const result = await response.json();
+    return result;
+  }
 
-  // Fetch data from the web server.
+  // Fetch the response from the web server.
   async function getComments() {
-    let response = await fetch("https://dev6.kenarnold.org/info");
+    let response = await fetch("https://dev6.kenarnold.org/response");
     let data = await response.json();
     return data;
   }
 
-  // Given the target word in a certain paragraph, insert an anchored comment.
-  function addComment(paragraphIndex, targetWord) {
-    return Word.run(async function (context) {
-      // Load the document as a Word.ParagraphCollection.
-      let documentParagraphs = context.document.body.paragraphs;
-      documentParagraphs.load("items");
-      await context.sync();
+  // Split the paragraph into a Word.RangeCollection object
+  async function paragraphSplitter(paragraph) {
+    // Split the paragraph by whitespace and return the result
+    const result = paragraph.getTextRanges([" "])
+    result.load()
+    await result.context.sync()
 
-      // Search for the target word and load the result.
-      let result = documentParagraphs.items[paragraphIndex].search(targetWord.word, { matchWholeWord: true });
-      result.load("items");
-      await context.sync();
+    return result
+  }
 
-      // Insert the comment into each occurrance of the target word.
-      let targetWords = result.items;
-      targetWords[0].getRange().insertComment(targetWord.comment);
-    });
+  // Insert the anchored comment into the target word
+  async function addComment(paragraph, targetword) {
+    const result = await paragraphSplitter(paragraph)
+    // targetword.index - 1 as index starts at 1 on server
+    result.items[targetword.index - 1].getRange().insertComment(targetword.comment)
   }
 
   // Main program.
   function main() {
     return Word.run(async function (context) {
-      // Get the document as a Word.ParagraphCollection class
-      const documentParagraphs = context.document.body.paragraphs;
-      documentParagraphs.load("items");
-      await context.sync();
 
-      // Iterate through paragraphs and sort all target words by paragraphs
-      const questionsForTheWholeDoc = await getComments();
-      for (let i = 0; i < documentParagraphs.items.length; i++) {
-        // Filter the questions by the paragraph index
-        const questionsForThisParagraph = questionsForTheWholeDoc.filter(
-          // Paragraph numbers start at 1 on server
-          (q) => q.paragraph === i + 1
-        );
+      try {
+        // Get the document as a Word.ParagraphCollection class
+        const documentParagraphs = context.document.body.paragraphs;
+        documentParagraphs.load("items");
+        await context.sync();
 
-        // Insert comment into target words
-        for (let j = 0; j < questionsForThisParagraph.length; j++) {
-          await addComment(i, questionsForThisParagraph[j]);
+        // Send the document to the server as an array of sentences, and get the result
+        let data = [];
+        for (let i = 0; i < documentParagraphs.items.length; i++) {
+          data.push(documentParagraphs.items[i].text);
         }
+        const result = await sendDocument(data);
+        console.log(result)   // this line can be removed when send and get are combined
+        const questionsForTheWholeDoc = await getComments();
+
+        for (let i = 0; i < documentParagraphs.items.length; i++) {
+          // Filter the questions by the paragraph index
+          const questionsForThisParagraph = questionsForTheWholeDoc.filter(
+            // Paragraph index starts at 1 on server
+            (q) => q.paragraph === i + 1
+          );
+
+          // Insert comment into target words
+          for (let j = 0; j < questionsForThisParagraph.length; j++) {
+            // Pass in the current paragraph and all the target words in the paragraph
+            await addComment(documentParagraphs.items[i], questionsForThisParagraph[j]);
+          }
+        }
+      } catch (error) {
+        console.log(error)
       }
+
     });
   }
 

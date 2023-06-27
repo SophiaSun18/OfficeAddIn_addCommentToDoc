@@ -3,64 +3,56 @@
         "id": 1,
         "word": "question",
         "paragraph": 1,
-        "start": 8,
-        "end": 12,
+        "index": 2,
         "comment": "what question are you trying to ask exactly?"
     },
     {
         "id": 2,
         "word": "quick",
         "paragraph": 1,
-        "start": 53,
-        "end": 58,
+        "index": 17,
         "comment": "who is 'us' refering to?"
     },
     {
         "id": 3,
         "word": "queue",
         "paragraph": 1,
-        "start": 98,
-        "end": 103,
+        "index": 29,
         "comment": "how long spent on writing is considered quick?"
     },
     {
         "id": 4,
         "word": "quantitative",
         "paragraph": 1,
-        "start": 125,
-        "end": 137,
+        "index": 36,
         "comment": "is there a better word to replace by?"
     },
     {
         "id": 5,
         "word": "questionnaire",
         "paragraph": 2,
-        "start": 20,
-        "end": 32,
+        "index": 7,
         "comment": "tell us more about the quantitative standards."
     },
     {
         "id": 6,
         "word": "quality",
         "paragraph": 2,
-        "start": 49,
-        "end": 56,
+        "index": 11,
         "comment": "tell us more about the questionnaire, how did you design it?"
     },
     {
         "id": 7,
         "word": "questionnaire",
         "paragraph": 2,
-        "start": 89,
-        "end": 101,
+        "index": 20,
         "comment": "who will be in charge of evaluating the essay?"
     },
     {
         "id": 8,
         "word": "queen",
         "paragraph": 3,
-        "start": 31,
-        "end": 36,
+        "index": 9,
         "comment": "how do you evaluate the quality?"
     }
 ]
