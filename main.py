@@ -34,6 +34,7 @@ async def access_contents(path: str):
 # .json named by the time that the data is uploaded.
 @app.post("/data")
 async def store_data(data: list):
+    os.chdir("/home/zs35/storeData")
     file_name = f"data_{time.time()}.json"
     json_data = json.dumps(data)
     with open(file_name, "w") as file:
