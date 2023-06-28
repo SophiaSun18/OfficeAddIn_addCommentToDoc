@@ -45,6 +45,7 @@ async def store_data(data: list):
 # For now, loading an existing file as response.
 @app.get("/response")
 async def get_response():
+    os.chdir("/home/zs35/OfficeAddIn_addCommentToDoc")
     return json.loads(open("testInfo.json").read())
 
 if __name__ == "__main__":
